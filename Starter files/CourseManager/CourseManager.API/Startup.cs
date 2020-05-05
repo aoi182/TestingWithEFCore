@@ -1,9 +1,12 @@
-﻿using CourseManager.API.Services;
+﻿using CourseManager.API.DbContexts;
+using CourseManager.API.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+
+using Microsoft.EntityFrameworkCore;
 
 namespace CourseManager.API
 {
@@ -22,6 +25,11 @@ namespace CourseManager.API
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddScoped<AuthorRepository>();
+
+            services.AddDbContext<CourseContext>(options =>
+            {
+                options.UseSqlServer(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\acruz\Documents\PluralSight\TestingWithEFCore\Starter files\CourseManager\CourseManager.API\AppData\db.mdf;Integrated Security=True;Connect Timeout=30");
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

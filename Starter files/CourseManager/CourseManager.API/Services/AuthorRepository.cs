@@ -16,14 +16,14 @@ namespace CourseManager.API.Services
             _context = context;
         }
 
-        public IEnumerable<Author> GetAuthors() 
-        { 
+        public IEnumerable<Author> GetAuthors()
+        {
             return _context.Authors.ToList();
         }
 
         public IEnumerable<Author> GetAuthors(int pageNumber = 1, int pageSize = 5)
         {
-            return _context.Authors.Skip((pageNumber-1) * pageSize).Take(pageSize).ToList();
+            return _context.Authors.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
         }
 
         public Author GetAuthor(Guid authorId)
@@ -39,7 +39,7 @@ namespace CourseManager.API.Services
         public void AddAuthor(Author author)
         {
             try
-            {            
+            {
                 if (author.CountryId == null)
                 {
                     author.CountryId = "BE";
